@@ -39,7 +39,7 @@ public class Appium02 {
         //Benim cihazımın ozellıklerını verdım ve andorıd drıver vasıtası ile ulasıyorum ve capatilities leri bu url ile gonder
 
 
-/*
+
         //add button
        // driver.findElementById("com.davemac327.gesture.tool:id/addButton").click();
 
@@ -58,7 +58,7 @@ public class Appium02 {
         MobileElement homeScreenTitle=driver.findElementById("android:id/title");
         Assert.assertTrue(homeScreenTitle.isDisplayed());
         System.out.println("Ana sayfa acildi");
-*/
+
 
 
     }

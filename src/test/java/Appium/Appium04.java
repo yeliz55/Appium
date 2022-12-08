@@ -12,7 +12,7 @@ import java.net.URL;
 
 import static org.testng.AssertJUnit.assertTrue;
 
-public class Appium03 {
+public class Appium04 {
     @Test
     public void test() throws MalformedURLException, InterruptedException {
         DesiredCapabilities capabilities=new DesiredCapabilities();
@@ -46,24 +46,10 @@ public class Appium03 {
         //Benim cihazımın ozellıklerını verdım ve andorıd drıver vasıtası ile ulasıyorum ve capatilities leri bu url ile gonder
         System.out.println("app yuklendi");
 
-       //telefon kilitli ıse ac demek
-        if (driver.isDeviceLocked()){
-            driver.unlockDevice();
-        }
-
         MobileElement homeScreenTitle=driver.findElementById("android:id/title");
         Assert.assertTrue(homeScreenTitle.isDisplayed());
         System.out.println("Ana sayfa acildi");
 
-
-        MobileElement testButton=driver.findElementById("com.davemac327.gesture.tool:id/testButton");
-        testButton.click();
-        System.out.println("Test button calısıyor");
-
-        Thread.sleep(3000);
-        MobileElement testAGestureTitle=driver.findElementById("android:id/title");
-        assertTrue(testAGestureTitle.isDisplayed());
-        System.out.println("test screen acildi...");
 
 
 
