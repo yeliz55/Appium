@@ -24,7 +24,7 @@ public class Appium03 {
         //Buda appiumdan gelen methodlar sayesinde yazabiliriz.
         //Bu uc yolda aynısını yapar
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"11");
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"emulator-5554");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"emulator-5556");
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
         //Yukarıda calısacagımız telefonun ozellıklerını verdık
 
@@ -44,12 +44,13 @@ public class Appium03 {
 
         AndroidDriver<MobileElement> driver =new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
         //Benim cihazımın ozellıklerını verdım ve andorıd drıver vasıtası ile ulasıyorum ve capatilities leri bu url ile gonder
-        System.out.println("app yuklendi");
+
 
        //telefon kilitli ıse ac demek
         if (driver.isDeviceLocked()){
             driver.unlockDevice();
         }
+        System.out.println("app yuklendi");
 
         MobileElement homeScreenTitle=driver.findElementById("android:id/title");
         Assert.assertTrue(homeScreenTitle.isDisplayed());

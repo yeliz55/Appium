@@ -23,7 +23,7 @@ public class Appium01 {
         //Buda appiumdan gelen methodlar sayesinde yazabiliriz.
         //Bu uc yolda aynısını yapar
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"11");
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"emulator-5554");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"emulator-5556");
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
         //Yukarıda calısacagımız telefonun ozellıklerını verdık
 
