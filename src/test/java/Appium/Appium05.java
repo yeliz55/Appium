@@ -25,20 +25,7 @@ public class Appium05 {
         Thread.sleep(5000);
         capabilities.setCapability(MobileCapabilityType.APP,"C:/Users/USERR/IdeaProjects/AppiumFirst/src/Apps/Calculator.apk");
         AndroidDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-      /*  Thread.sleep(9000);
-        MobileElement num1=driver.findElementById("com.google.android.calculator:id/digit_1");
-        MobileElement num2=driver.findElementById("com.google.android.calculator:id/digit_2");
-        MobileElement num3=driver.findElementById("com.google.android.calculator:id/digit_3");
-        MobileElement num4=driver.findElementById("com.google.android.calculator:id/digit_4");
-        MobileElement num5=driver.findElementById("com.google.android.calculator:id/digit_5");
-        MobileElement num6=driver.findElementById("com.google.android.calculator:id/digit_6");
-        MobileElement num7=driver.findElementById("com.google.android.calculator:id/digit_7");
-        MobileElement num8=driver.findElementById("com.google.android.calculator:id/digit_8");
-        MobileElement num9=driver.findElementById("com.google.android.calculator:id/digit_9");
-        MobileElement num0=driver.findElementById("com.google.android.calculator:id/digit_0");
 
-        MobileElement plus=driver.findElementByXPath("//android.widget.Button[@text='+']");
-        num1.click();*/
 
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         //rakamlarin elementlerini locate ettik:
