@@ -73,9 +73,6 @@ public class Appium07WebAppChrome {
 
         Thread.sleep(20000);
 
-
-
-
         driver.closeApp();
 
 }}
