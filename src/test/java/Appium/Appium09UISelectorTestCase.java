@@ -10,7 +10,9 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Appium08UISelector {
+import static org.testng.AssertJUnit.assertEquals;
+
+public class Appium09UISelectorTestCase {
     @Test
     public void test() throws MalformedURLException, InterruptedException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -51,40 +53,29 @@ public class Appium08UISelector {
 
 
         //className ile text kullanarak testButton a click
-       // driver.findElementByAndroidUIAutomator("UiSelector().className(\"android.widget.Button\").text(\"Test\")").click();
+        // driver.findElementByAndroidUIAutomator("UiSelector().className(\"android.widget.Button\").text(\"Test\")").click();
 
 
         //className ve startwıth kullanarak testbutton click
-       // driver.findElementByAndroidUIAutomator("UiSelector().className(\"android.widget.Button\").textStartsWith(\"T\")").click();
+        // driver.findElementByAndroidUIAutomator("UiSelector().className(\"android.widget.Button\").textStartsWith(\"T\")").click();
 
 
-      //className ve startwıth kullanarak AddGesture click
+        //className ve startwıth kullanarak AddGesture click
         driver.findElementByAndroidUIAutomator("UiSelector().className(\"android.widget.Button\").textStartsWith(\"Add\")").click();
         Thread.sleep(5000);
 
 
-        //add gestrueye tıkladıktan sonra done butonunun aktif olmadıgını false dondugunu sout ıcınde yazdırdık
-        System.out.println(driver.findElementByAndroidUIAutomator("UiSelector().resourceId(\"com.davemac327.gesture.tool:id/done\").enabled(false)").
-                getAttribute("enabled"));
+        Thread.sleep(5000);
+        String isFalse = driver.findElementByAndroidUIAutomator("UiSelector().resourceId(\"com.davemac327.gesture.tool:id/done\").enabled(false)").getAttribute("enabled");
+        Assert.assertEquals(isFalse, "false");
 
+        driver.findElementByXPath("//android.widget.EditText").sendKeys("text");
+        driver.findElementById("com.davemac327.gesture.tool:id/gestures_overlay").click();
+        Thread.sleep(5000);
+        String isTrue = driver.findElementByAndroidUIAutomator("UiSelector().resourceId(\"com.davemac327.gesture.tool:id/done\").enabled(true)").getAttribute("enabled");
+        Assert.assertEquals(isTrue, "true");
 
-
-
-        /*
-        Done buttonunun aktif olup true donmesı ıcın name text box'ina name girip ekrana tiklattik
-        Daha sonra enable true ile bunu sout icinde yazdirdik
-         */
-        driver.findElementByAndroidUIAutomator("UiSelector().className(\"android.widget.EditText\")").
-                sendKeys("team02");
-        driver.findElementByAndroidUIAutomator("UiSelector().className(\"android.widget.FrameLayout\")").click();
-
-        System.out.println(driver.findElementByAndroidUIAutomator("UiSelector().resourceId(\"com.davemac327.gesture.tool:id/done\").enabled(true)").
-                getAttribute("enabled"));
-
-
-        //android.widget.EditText
-        //session kapat
-        // driver.closeApp();
+        driver.closeApp();
 
     }
 }
