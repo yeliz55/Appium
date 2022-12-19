@@ -4,16 +4,15 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Appium10 extends BaseClass{
+public class Appium11 {
     @Test
     public void test() throws MalformedURLException, InterruptedException {
-        /*DesiredCapabilities capabilities = new DesiredCapabilities();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "11");
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "emulator-5554");
@@ -24,13 +23,7 @@ public class Appium10 extends BaseClass{
         capabilities.setCapability("noReset", true);
 
 
-        AndroidDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);*/
-
-
-                      //********!!!!!!ONEMLİ!!!!!*********//
-        //Yukarıdaki kodlari tekrar tekrar yazmamak icin base class olusturduk ve
-        // o classa bu classı extends ederek direk methodlari oradan kullanmasini sagladik
-        AndroidDriver<MobileElement> driver=getAndroidDriver();
+        AndroidDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
         //Api Demos a tkla
 
 //preference a tikla
@@ -39,24 +32,24 @@ public class Appium10 extends BaseClass{
 
 //preference dependencies e tikla
         driver.findElementByXPath("//android.widget.TextView[@text='3. Preference dependencies']").click();
-        Thread.sleep(3000);
-//wifi checkbox u tikla
-        String isChecked = driver.findElementByAndroidUIAutomator("UiSelector().resourceId(\"android:id/checkbox\").checkable(true)").getAttribute("checked");
-        System.out.println("isChecked = " + isChecked);
-        if (isChecked.equals("false")) {
-            driver.findElementByAndroidUIAutomator("UiSelector().resourceId(\"android:id/checkbox\")").click();
 
+//wifi checkbox u tikla
+
+        if (driver.findElementByXPath("//android.widget.TextView[@text='WiFi settings']").isEnabled()) {
+            driver.findElementByXPath("//android.widget.TextView[@text='WiFi settings']").click();
+        } else {
+            driver.findElementByXPath("//android.widget.CheckBox").click();
+            Thread.sleep(2000);
+            //wi-fi settings e tikla
+            driver.findElementByXPath("//android.widget.TextView[@text='WiFi settings']").click();
         }
-        Thread.sleep(3000);
-//wi-fi settings e tikla
-        driver.findElementByXPath("//android.widget.TextView[@text='WiFi settings']").click();
-        Thread.sleep(5000);
+
 // send keys
-        driver.findElementByAndroidUIAutomator("UiSelector().resourceId(\"android:id/edit\")").sendKeys("TextAppium");
-        Thread.sleep(3000);
+        driver.findElementByAndroidUIAutomator("UiSelector().resourceId(\"android:id/edit\")").sendKeys("text");
+
 //ok a tikla
         driver.findElementByAndroidUIAutomator("UiSelector().resourceId(\"android:id/button1\")").click();
-        Thread.sleep(3000);
+
         // driver.closeApp();
 
     }
