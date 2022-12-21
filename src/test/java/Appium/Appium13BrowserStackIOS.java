@@ -44,13 +44,17 @@ public class Appium13BrowserStackIOS {
         IOSElement textButton = (IOSElement) new WebDriverWait(driver, 30).until(
                 ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("Text Button")));
         textButton.click();
+
         IOSElement textInput = (IOSElement) new WebDriverWait(driver, 30).until(
                 ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("Text Input")));
         textInput.sendKeys("hello@browserstack.com");
+
+
         Thread.sleep(5000);
+
         IOSElement textOutput = (IOSElement) new WebDriverWait(driver, 30).until(
-                ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("Text Output")));
-        if(textOutput != null || textOutput.getText().equals("hello@browserstack.com"))
+                ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("Text Input")));
+        if(textOutput != null && textOutput.getText().equals("hello@browserstack.com"))
             assert(true);
         else
             assert(false);
