@@ -1,7 +1,10 @@
 package ECommerceApp;
 
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -36,8 +39,7 @@ public class ECommerceTotalAmountValidation05Scroll extends BaseECommerceApp {
         MobileElement feMaleRadioButton=driver.findElementById("com.androidsample.generalstore:id/radioFemale");
         MobileElement letsShopButton=driver.findElementById("com.androidsample.generalstore:id/btnLetsShop");
 
-        //Eger popup test edılmek ıstenıyorsa ve bu search kod ıcınde bulunmuyorsa yani direk locate edilemiyorsa
-        //developerlar genelde bunu asagıdaki gibi className= "android.widget.Toast" ile build ederler bizde bu sekilde verify ederiz
+
 
         //Ana sayfada miyiz?
         Assert.assertTrue(homeScreenTitle.isDisplayed());
@@ -56,7 +58,7 @@ public class ECommerceTotalAmountValidation05Scroll extends BaseECommerceApp {
         Assert.assertEquals(selectedCountry.getText(),country);
 
         // positive test icin name box i doldurduk
-        nameBox.sendKeys("Hanife");
+        nameBox.sendKeys("ylz");
 
         //female secilir
         if(!feMaleRadioButton.isSelected()) {
@@ -71,32 +73,18 @@ public class ECommerceTotalAmountValidation05Scroll extends BaseECommerceApp {
         //Products ekraninda miyiz?
 
         Assert.assertTrue(driver.findElementById("com.androidsample.generalstore:id/toolbar_title").isDisplayed());
-        //1.yol
-        //first product selected
-        //driver.findElementByXPath("(//android.widget.TextView[@text='ADD TO CART'])[1]").click();
 
-        //second product selected
-        // driver.findElementByXPath("(//android.widget.TextView[@text='ADD TO CART'])[1]").click();
-        /*
-        ılk urune tıklamadan ekranda ıkı urun oldugu ıcın ındex olarak locate de 1 ve 2 dememiz gerekiyor du addtocart kısmına
-        fakat ılk urunde addtocart kısmına tıklayınca yani ılk urunu secınce addtocart addedtocart ta donusuyor ve ıkıncı urunun locate tek indexse donusuyor
-        Bu yuzden ıkıncıyı sectırırken ılk aldıgımız locate gore [2] yazarsak ve tıklamaya calısırsak hata alırız ılk urun secılınce ıkıncı urun bır konumuna gecıyor ve locatedekı ındex[1] olur
 
-        yada bu sorunu cozebılmek mobılelement veraeblesıne atama yapmamız gerekır
-        3.yol list e atayarak da yapabiliriz
-         */
-        //2.yol
-        //  MobileElement addButton1= driver.findElementByXPath("(//android.widget.TextView[@text='ADD TO CART'])[1]");
-        // MobileElement addButton2= driver.findElementByXPath("(//android.widget.TextView[@text='ADD TO CART'])[2]");
-        // addButton1.click();
-        //  Thread.sleep(2000);
-        // addButton2.click();
 
-        //3.yol
-        List<MobileElement> addTOCarts=driver.findElementsByXPath("//android.widget.TextView[@text='ADD TO CART']");
-        addTOCarts.get(0).click();
-        Thread.sleep(2000);
-        addTOCarts.get(1).click();
+
+        //ilk urun sepete eklendi
+        MobileElement addButton1= driver.findElementByXPath("(//android.widget.TextView[@text='ADD TO CART'])[1]");
+        addButton1.click();
+        //ikinci secilmek istenen urun icin scroll yapmamız gerekir
+        driver.findElementsByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Jordan Lift Off\"))");
+
+        MobileElement ikiciUrunAddButton = driver.findElementByXPath("((//android.widget.TextView[@text='Jordan Lift Off']//following-sibling::*)[2]//following-sibling::*)[2]");
+        ikiciUrunAddButton.click();
 
         //add Basket
         driver.findElementById("com.androidsample.generalstore:id/appbar_btn_cart").click();
@@ -107,7 +95,7 @@ public class ECommerceTotalAmountValidation05Scroll extends BaseECommerceApp {
 
         //sepetteki urunleri dogruluyoruz
         Assert.assertEquals(driver.findElementByXPath("//android.widget.TextView[@text='Air Jordan 4 Retro']").getText(),"Air Jordan 4 Retro");
-        Assert.assertEquals(driver.findElementByXPath("//android.widget.TextView[@text='Air Jordan 1 Mid SE']").getText(),"Air Jordan 1 Mid SE");
+        Assert.assertEquals(driver.findElementByXPath("//android.widget.TextView[@text='Jordan Lift Off']").getText(),"Jordan Lift Off");
 
         //Fiyat
         List<MobileElement> prices=driver.findElementsByXPath("//android.widget.TextView[@resource-id='com.androidsample.generalstore:id/productPrice']");

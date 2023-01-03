@@ -25,4 +25,9 @@ public class BaseECommerceApp {
 
         return new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
+      /*
+    telefonu yan cevirmek icin
+    diveceOrientation == text == landscape
+    ( inspectera yazarak benim devices'imi yatay sekılde ac demek )
+     */
 }
