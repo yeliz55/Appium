@@ -27,7 +27,7 @@ public class BaseECommerceApp {
     }
       /*
     telefonu yan cevirmek icin
-    diveceOrientation == text == landscape
+    deviceOrientation == text == landscape
     ( inspectera yazarak benim devices'imi yatay sekılde ac demek )
      */
 }

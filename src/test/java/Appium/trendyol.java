@@ -35,7 +35,7 @@ public class trendyol {
 
         AndroidDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         Assert.assertTrue(driver.findElementByXPath("//android.widget.TextView[@text='Trendyol Go']").isDisplayed());
         System.out.println("trenyol uygulamasindayiz");
@@ -44,8 +44,15 @@ public class trendyol {
         textBox1.click();
         Thread.sleep(3000);
         MobileElement textBox2 = driver.findElementById("trendyol.com:id/edittext_search_view");
-        textBox2.sendKeys("kalem");
-        Thread.sleep(3000);
+        textBox2.sendKeys("Top");
+        Thread.sleep(5000);
+
+        driver.findElementByXPath(" //android.widget.TextView[@text='Top']").click();
+        System.out.println("Top kelimesini textbox'a girdik");
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+        Assert.assertTrue(driver.findElementByXPath(" //android.widget.EditText[@text='Top | 1490 ürün']").isDisplayed());
+        System.out.println("Top ile alakali cikan sonuclari dogruladik");
 
 
 
